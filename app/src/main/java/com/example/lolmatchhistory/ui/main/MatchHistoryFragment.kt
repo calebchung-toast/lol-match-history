@@ -20,18 +20,11 @@ class MatchHistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.match_history, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-//        lifecycleScope
-//        viewModel.uiState.collect {
-//
-//        }
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
-
-
 }

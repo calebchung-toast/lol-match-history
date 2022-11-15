@@ -45,12 +45,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-//        lifecycleScope
-//        viewModel.uiState.collect {
-//
-//        }
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
 
