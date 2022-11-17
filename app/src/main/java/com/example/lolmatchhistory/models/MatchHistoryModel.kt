@@ -30,17 +30,15 @@ enum class Position {
 }
 class MatchHistoryModel {
 
-    private val apiKey: String = "RGAPI-61895621-d8d1-49b5-9bfa-b00aa8861423"
+    private val apiKey: String = "RGAPI-e47ccb78-7b08-47d7-8b5c-f6d889672c8d"
     private val numMatches: Int = 3
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getMatches(summonerName: String): List<Match> {
         System.out.println("Getting matches for $summonerName")
-
         // Get PUUID based on username
         val userPuuidJson = JSONObject(makeRequest("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$summonerName?api_key=$apiKey"))
         val puuid = userPuuidJson.get("puuid") as String
-
         // Get matches based on PUUID
         val matchesJson = JSONArray(makeRequest("https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
                 puuid +
@@ -95,7 +93,6 @@ class MatchHistoryModel {
     // Make the request and return the response as a JSON
     private fun makeRequest(url: String) : String {
         val okHttpClient = OkHttpClient()
-        var response: JSONObject? = null
         val request = Request.Builder()
             .method("GET", null)
             .url(url)
