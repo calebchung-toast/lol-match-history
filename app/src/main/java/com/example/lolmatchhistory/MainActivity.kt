@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.summonerName.observe(this, Observer { summonerName ->
-            // When the summoner name has been changed, change to match history fragment
-            viewModel.updateMatches()
+        viewModel.matches.observe(this, Observer {
+            // When the have been changed, change to match history fragment
             supportFragmentManager.beginTransaction().replace(R.id.container, MatchHistoryFragment.newInstance()).commitNow()
         })
         if (savedInstanceState == null) {
@@ -37,4 +36,6 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
+
+
 }

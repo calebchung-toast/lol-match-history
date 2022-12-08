@@ -1,5 +1,6 @@
 package com.example.lolmatchhistory.ui.main
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import com.example.lolmatchhistory.R
 
 class MainFragment : Fragment() {
@@ -32,6 +34,7 @@ class MainFragment : Fragment() {
                                            count: Int, after: Int) {
             }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 if (s.contains("\n")) {

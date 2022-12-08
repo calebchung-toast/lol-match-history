@@ -14,7 +14,7 @@ data class Match (
     val blueSideKills: Int,
     val redSideKills: Int,
     val players: List<Player>,
-
+    val playerName: String,
 )
 data class Player (
     val summonerName: String,
@@ -30,8 +30,8 @@ enum class Position {
 }
 class MatchHistoryModel {
 
-    private val apiKey: String = "RGAPI-e47ccb78-7b08-47d7-8b5c-f6d889672c8d"
-    private val numMatches: Int = 3
+    private val apiKey: String = "RGAPI-050c8bf0-a8f8-4e6c-af80-b348d3ee630e"
+    private val numMatches: Int = 10
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getMatches(summonerName: String): List<Match> {
@@ -83,7 +83,7 @@ class MatchHistoryModel {
             var matchDate = matchJson.getJSONObject("info").get("gameStartTimestamp")
             matchDate = java.time.format.DateTimeFormatter.ISO_INSTANT
                 .format(java.time.Instant.ofEpochMilli(matchDate as Long))
-            val match = Match(matchDate, winningTeam, blueSideKills, redSideKills, players)
+            val match = Match(matchDate, winningTeam, blueSideKills, redSideKills, players, summonerName.removeSuffix("\n"))
             matches.add(match)
         }
         System.out.println(matches)

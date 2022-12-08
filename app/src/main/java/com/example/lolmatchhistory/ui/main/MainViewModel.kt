@@ -22,8 +22,10 @@ class MainViewModel : ViewModel() {
     val summonerName: LiveData<String> get() = mutableSummonerName
     val matches: LiveData<List<Match>> get() = mutableMatchList
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun searchSummonerName(name: String) {
-        mutableSummonerName.postValue(name)
+        mutableSummonerName.value = name
+        updateMatches()
     }
 
     private fun setMatchList(matches: List<Match>) {
